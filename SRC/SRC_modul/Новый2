@@ -1,0 +1,37 @@
+				SCL_A_2 = 1;
+				wait1mks();		// EOC
+				SCL_A_2 = 0;
+				wait1mks();
+				
+				SCL_A_2 = 1;
+				wait1mks();		
+				if(SDA_A_2 != 0) continue;// "0"
+				SCL_A_2 = 0;
+				wait1mks();
+				
+				SCL_A_2 = 1;
+				wait1mks();		
+				sig = SDA_A_2;// "SIG"
+				SCL_A_2 = 0;
+				wait1mks();
+				
+				d = 0;
+				for(j=0; j<16; j++)
+				{
+					SCL_A_2 = 1;
+					wait1mks();		
+					bit = SDA_A_2;
+					d |= (bit)<<(15-j); 
+					SCL_A_2 = 0;
+					wait1mks();		
+				}
+				if(sig == 0)
+				{
+					d = ~d;
+					Adc.fADC[i] = d;
+					Adc.fADC[i] = Adc.fADC[i]*(-1);
+				}else
+				{
+					Adc.fADC[i] = d;
+				}	
+				Adc.fADC[i] = Adc.fADC[i]*k_new[i].K + k_new[i].Ofs;

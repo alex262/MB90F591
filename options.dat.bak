@@ -1,0 +1,362 @@
+$CPUSERIES-907
+$Prj-Debug
+$0
+-g
+-w 2
+-INF LIST
+-I "%(PRJPATH)\src\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-I "%(PRJPATH)\SRC\SRC_modul"
+-O 0
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1204194443
+$end
+$SRC\SRC_modul\Filter.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\CanOpenMain\src\pdo.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$Src\Main.c,0
+-g
+-w 2
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\CanOpenMain\src\sdo.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\CanOpenMain\src\objacces.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\Global.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-Xdof
+-INF STACK
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\SRC_modul\ADC5_C.c,0
+-g
+-w 2
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 0
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\CanOpenMain\src\canOpenDriver.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\CanOpenMain\src\sync.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\flash.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 3
+-K SIZE
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$Src\Uart.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$SRC\Timer.c,0
+-g
+-w 1
+-INF LIST
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\SRC_modul"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC\CanOpenMain\include"
+-I "C:\Work\Project\NDD16-C\NDD16_C\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-Xdof
+-INF STACK
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1194444299
+$end
+$1
+-g
+-w 2
+-linf ON
+-lsrc ON
+-lsec ON
+-lcros ON
+-linc ON
+-lexp OBJ
+-pl 0
+-pw 100
+-tab 8
+-lf
+-Xdof
+$other
+$time
+1194444299
+$end
+$2
+-g
+-AL 2
+-ro ROM=0xFF0000/0xFFFFFF
+-ra RAM=0x000100/0x0018FF
+-sc RAMCODE/Code/BYTE=RAM
+-sc CODE_START/Code/BYTE+CODE*/Code/BYTE+@RAMCODE/Code/BYTE+*/Const/WORD=0xFFA000
+-check_rora
+-check_locate
+-rg 0
+-m
+-mmi
+-xlf
+-slf
+-mlf
+-pl 0
+-pw 132
+-alsf "Global.lst"
+-alsf "Main.lst"
+-alsf "Mb90590.lst"
+-alsf "Reginit.lst"
+-alsf "Terminal.lst"
+-alsf "Uart.lst"
+-alsf "util.lst"
+-alsf "vectors.lst"
+-alsf "WRDCPY.lst"
+-alsf "sbrk.lst"
+-alsf "flash.lst"
+-alrf "Global.lst"
+-alrf "Main.lst"
+-alrf "Mb90590.lst"
+-alrf "Reginit.lst"
+-alrf "Terminal.lst"
+-alrf "Uart.lst"
+-alrf "util.lst"
+-alrf "vectors.lst"
+-alrf "WRDCPY.lst"
+-alrf "flash.lst"
+-na
+-w 1
+-Xdof
+$other
+$time
+1202976109
+$end
+$3
+-m
+-dt s,d,r,a
+-pl 60
+-pw 132
+-g
+-Xdof
+$other
+$time
+1202976109
+$end
+$4
+-Xdof
+$other
+$time
+1194444299
+$end
+$5
+$other
+$time
+1194444299
+$end
+$Prjend
+$CPUSERIESEND

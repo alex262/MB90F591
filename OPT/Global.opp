@@ -1,0 +1,16 @@
+-g
+-w 1
+-I "C:\Work\Project\Блоки Fujitsu MB90F591\Source\SRC\SRC_modul"
+-I "C:\Work\Project\Блоки Fujitsu MB90F591\Source\SRC\CanOpenMain\include"
+-I "C:\Work\Project\Блоки Fujitsu MB90F591\Source\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+-c
+-cwno
+-cpu MB90F591G
+-INF srcin  -T p,-B

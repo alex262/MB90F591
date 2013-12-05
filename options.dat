@@ -1,0 +1,351 @@
+$CPUSERIES-907
+$Prj-Debug
+$0
+-g
+-w 2
+-I "%(PRJPATH)\src\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-I "%(PRJPATH)\SRC\SRC_modul"
+-O 0
+-model MEDIUM
+-K ADDSP
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\SRC_modul\AVV2_C.c,0
+-g
+-w 2
+-I "%(PRJPATH)\src\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-I "%(PRJPATH)\SRC\SRC_modul"
+-O 0
+-model MEDIUM
+-K ADDSP
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\SRC_modul\NDD20P1.c,0
+-g
+-w 2
+-I "%(PRJPATH)\src\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-I "%(PRJPATH)\SRC\SRC_modul"
+-O 0
+-model MEDIUM
+-K ADDSP
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\SRC_modul\Filter.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\CanOpenMain\src\pdo.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$Src\Main.c,0
+-g
+-w 2
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\CanOpenMain\src\sdo.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\CanOpenMain\src\objacces.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\Global.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-xauto 30
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\SRC_modul\ADC5_C.c,0
+-g
+-w 2
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 0
+-model MEDIUM
+-K ADDSP
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\CanOpenMain\src\canOpenDriver.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\CanOpenMain\src\sync.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\flash.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 3
+-K SIZE
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$Src\Uart.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\Timer.c,0
+-g
+-w 1
+-I "%(PRJPATH)\SRC\SRC_modul"
+-I "%(PRJPATH)\SRC\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-O 4
+-K SPEED
+-model MEDIUM
+-K ADDSP
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$SRC\SRC_modul\RVV6.c,0
+-g
+-w 2
+-I "%(PRJPATH)\src\CanOpenMain\include"
+-I "%(PRJPATH)\SRC"
+-I "%(PRJPATH)\SRC\SRC_modul"
+-O 0
+-model MEDIUM
+-K ADDSP
+-K NOEOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1347962481
+$end
+$1
+-g
+-w 2
+-linf OFF
+-lsrc OFF
+-lsec OFF
+-lcros OFF
+-linc OFF
+-lexp OBJ
+-pl 60
+-pw 100
+-tab 8
+$other
+$time
+1347962481
+$end
+$2
+-g
+-AL 2
+-ro _ROM_1_=0xFF0000/0xFFFFFF
+-ra _RAM_1_=0x000100/0x0018FF
+-ra _RAM_2_=0x002100/0x0028FF
+-sc RAMCODE/Code/BYTE=_RAM_1_
+-sc CODE_START/Code/BYTE+CODE*/Code/BYTE+@RAMCODE/Code/BYTE+*/Const/WORD=0xFFA000
+-check_rora
+-check_locate
+-rg 0
+-m
+-mmi
+-xlf
+-slf
+-mlf
+-pl 60
+-pw 132
+-Xals
+-Xalr
+-na
+-w 1
+$other
+$time
+1382524293
+$end
+$3
+-dt s,d,r,a
+-pl 60
+-pw 132
+-g
+$other
+$time
+1382524293
+$end
+$4
+-Xdof
+$other
+$time
+1347962481
+$end
+$5
+$other
+$time
+1347962481
+$end
+$Prjend
+$CPUSERIESEND

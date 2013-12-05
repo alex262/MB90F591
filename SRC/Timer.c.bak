@@ -1,0 +1,231 @@
+#include "mb90590.h"
+#include "timer.h"
+#include "global.h"
+#include "applicfg.h"
+#include "def.h"
+#include "objdictdef.h"
+#include "lifegrd.h"
+#include "sync.h"
+
+#include INCLUDE_H
+
+//WORD BLINK=100/TIMER_RESOLUTION_MS;
+WORD TIME_OUT_CAN=2000/TIMER_RESOLUTION_MS;		
+//WORD TIME_DATA=1000/TIMER_RESOLUTION_MS;	
+//WORD dataDAC=0;	
+void timerInterrupt( UNS8 unused);
+extern UNS16 softCount;
+
+void SetupTime(void)
+{ 
+//    TBTC_TBIE=1;
+//	TBTC_TBC1=1;
+//	TBTC_TBC0=0;
+
+    /* initialise reload timer 0 */
+    TMRLR0 = RELOAD_VALUE_0;    /* set reload value*/
+    TMCSR0 = 0x81B;      		/* prescaler 2us at 16 MHz */
+	program.ms1counter=0;
+	
+//	TMRLR1 = RELOAD_VALUE_1;    /* set reload value*/
+ //   TMCSR1 = 0x81B;      		/* prescaler 2us at 16 MHz */
+}
+// р рывани  Reload Timer 1 
+__interrupt void ReloadTimer1(void) 
+{
+	__DI();	
+	TMCSR1_UF = 0;       			/* reset underflow interrupt request flag */
+	//receiveMsgHandler(0);	
+	//receiveMsgHandler(1);
+	__EI();	
+}
+// р рывани  Reload Timer 0 
+__interrupt void ReloadTimer0(void) 
+{   
+	TMCSR0_UF = 0;       			/* reset underflow interrupt request flag */
+//	timerInterrupt(1);
+//	softCount++;
+//	if(softCount>=TIME_DATA)
+//	{
+//		softCount=0;
+//		incDate();
+//	}
+//	receiveMsgHandler(0);
+//	receiveMsgHandler(1);
+//	if(program.watch_dog>254) RESET;	//~1с
+//		else program.watch_dog++;
+	//===========================================================================
+	if(program.TimerCan0<TIME_OUT_CAN)	//(ok)
+	{
+		program.TimerCan0++;
+		ClearError(ind_COMA);
+		program.ErrorCAN&=(~Err_CAN1);
+		(*STATE_BLOCK)&=~ST_Can1; 
+	}
+	if(program.TimerCan1<TIME_OUT_CAN)//(ok)
+	{
+		program.TimerCan1++;
+		ClearError(ind_COMA);
+		program.ErrorCAN&=(~Err_CAN2);
+		(*STATE_BLOCK)&=~ST_Can2; 
+	}
+	program.COUNT++;
+	Indicate(&program.COUNT,200); //not
+	//===========================================================================
+	//#ifdef PLATA_FSU22
+	//	Fsu22.Timer++;
+	//#endif
+	//===========================================================================
+	#ifdef PLATA_FSU22C
+		Fsu22C.Timer++;			//not
+	#endif
+	//===========================================================================
+	#ifdef PLATA_FSU
+		//Fsu.Timer_Test++;
+		Fsu.Timer++;	//not
+	#endif
+	//===========================================================================
+	#ifdef PLATA_NDD
+		Ndd.Timer++;	//not
+		Ndd.Timer2++;	//not
+		Ndd.TimerTest++;//ok
+	#endif
+	//===========================================================================
+	#ifdef PLATA_ADC
+		//Adc.TimerTem++;
+		Adc.TimerTest++;	//not
+		ReadAdcInt();
+	#endif
+	//===========================================================================
+	#ifdef PLATA_DAC9
+		Dac9.TimerErrDac++;	//not
+		Dac9.TimerMaster++;
+		#ifdef READ_TEMP
+			Dac9.TimerTem++;	
+		#endif
+		ReadAdcInt();
+		SelectMasterDAC();
+	#endif
+	//===========================================================================
+	#ifdef PLATA_AVV2C
+		Avv.TimerTem++;
+		Avv.Timer++;
+	#endif
+	#ifdef PLATA_RVV3C
+		Rvv.Timer++;
+	#endif
+	//===========================================================================
+	#ifdef PLATA_KVV
+		Kvv.Timer++;
+		Kvv.Timer2++;
+	#endif
+	#ifdef PLATA_KCU
+		Kcu.Timer++;
+	#endif
+	//===========================================================================
+	#ifdef PLATA_NDD20P1
+		Ndd.Timer1++;
+		Ndd.Timer2++;
+	#endif
+	#ifdef PLATA_NDD20
+		Ndd.Timer1++;
+		Ndd.Timer2++;
+	#endif
+	//===========================================================================
+	#ifdef PLATA_RVV5C
+		Rvv.Timer++;
+	#endif
+	//===========================================================================
+	#ifdef PLATA_RVV6
+		Rvv.Timer++;
+	#endif
+	//===========================================================================
+	#ifdef PLATA_NDD21
+		Ndd.Timer++;
+		Ndd.Timer2++;
+	#endif
+
+}
+// р рывани  от базово о та м ра
+__interrupt void TimeBaseTimer(void)// 4.096 мс
+{
+	TBTC_TBR=0;						//сброс с ёт ика
+//------------------WatchDog----------------------------------------
+//	if(program.watch_dog>122) RESET;	//~1с
+//		else program.watch_dog++;
+//------------------------------------------------------------------
+//------------------Т хноло и  ски  про он--------------------------
+//------------------------------------------------------------------
+	program.ms1counter++;			// в ли  ни  милис к ндно о с  т ика(244*4.096=999.424; 
+   									//о ибка за с к нд  составл  т 0.058%
+}
+//=====================================================
+void timerInterrupt( UNS8 unused)
+{
+	UNS8 i;
+	for( i=0; i < NB_OF_HEARTBEAT_PRODUCERS; i++ )
+	{
+		// this increaes the time var. +1 means +1ms
+		if( heartBeatTable[i].should_time > 0 )  
+		{
+			heartBeatTable[i].time += TIMER_RESOLUTION_MS;
+		}
+	}
+	// increase time of "our" heartbeat...
+	//if( ourHeartBeatValues.ourShouldTime > 0 )
+    	ourHeartBeatValues.ourTime += TIMER_RESOLUTION_MS;
+//	if (SyncValues.ourShouldTime > 0 )
+		SyncValues.ourTime += TIMER_RESOLUTION_US ;
+}
+//=====================================================
+UNS16 getTime16( UNS16* time )
+{
+	UNS16 wReturnValue;
+	UNS16 wTestTime;
+
+	wReturnValue = *time;
+	wTestTime = *time;
+	if( wTestTime != wReturnValue )
+	{
+		// maybe an overflow occured. call this function again (recursive)
+		wReturnValue = getTime16( time );
+	}
+	return wReturnValue;
+}
+//=====================================================
+UNS32 getTime32( UNS32* time )
+{
+	UNS32 wReturnValue;
+	UNS32 wTestTime;
+
+	wReturnValue = *time;
+	wTestTime = *time;
+	if( wTestTime != wReturnValue )
+	{
+		// maybe an overflow occured. call this function again (recursive)
+		wReturnValue = getTime32 ( time );
+	}
+	return wReturnValue;
+}
+//=====================================================
+void setTime16( UNS16* time, UNS16 value )
+{
+	*time = value;
+	if( *time != value )
+	{ 
+		// it seems that the irq-serviceroutine was called during setting the
+		// value, so try again
+		setTime16( time, value );
+	}
+}
+//=====================================================
+void setTime32( UNS32* time, UNS32 value )
+{
+	*time = value;
+	if( *time != value )
+	{ 
+		// it seems that the irq-serviceroutine was called during setting the
+		// value, so try again
+		setTime32( time, value );
+	}
+}

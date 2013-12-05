@@ -1,0 +1,13 @@
+-g
+-w 2
+-linf OFF
+-lsrc OFF
+-lsec OFF
+-lcros OFF
+-linc OFF
+-lexp OBJ
+-pl 60
+-pw 100
+-tab 8
+-cwno
+-cpu MB90F591G
