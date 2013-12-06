@@ -69,6 +69,10 @@
 	#define	INCLUDE_H	"fsu22.h"
 #endif
 #ifdef	PLATA_DAC9
+	//--------------------------------
+	#define BUFFER_LEN_UART		265		//Размер буффера порта
+	#define Max_In_Pak 			254		//Макcимальна  длина входящего пакета
+	#define COUNT_UART_BUF		1		// количесто портов
 	#define	INCLUDE_H	"dac9.h"
 #endif
 #ifdef	PLATA_FSU22C
