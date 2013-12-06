@@ -280,36 +280,36 @@ void GetPak_Uart(BYTE ch)
 				memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i,program.N[ch]);
 				__EI();
 				i=0;
-				if(program.N[ch]<(i+5)) break;
+				if(program.N[ch]<(5)) break;
 				//Putch_N(0,0x31);
 				
 				//если длина ещё непришла выход
-				nDataLen=program.Pack_IN_[ch][i+3]+(unsigned int)(program.Pack_IN_[ch][i+4]<<8);
+				nDataLen=program.Pack_IN_[ch][3]+(unsigned int)(program.Pack_IN_[ch][4]<<8);
 				nLen=nDataLen+9;
 				if(nLen<Max_In_Pak)
 				//Слишком большая длина пакета
 				{
 					//Putch_N(0,0x32);
-					if(nLen>(BUFFER_LEN_UART-1-i))	//Если пакет не помещяется в оставшейся чачти буфера
+					if(nLen>(BUFFER_LEN_UART-1))	//Если пакет не помещяется в оставшейся чачти буфера
 					{							//перетаскиваем пакет к началу
 						program.N[ch]= 0;
 						break;
 					}
 					//Putch_N(0,0x33);
 					
-					if(nLen>(program.N[ch]-i)) break;
+					if(nLen>(program.N[ch])) break;
 					//Putch_N(0,0x34);
 					//Если пришёл ещё не весь пакет выходим
-					if(program.Pack_IN_[ch][i+nLen-2]==0x81 && program.Pack_IN_[ch][i+nLen-1]==0x0)
+					if(program.Pack_IN_[ch][nLen-2]==0x81 && program.Pack_IN_[ch][nLen-1]==0x0)
 					//Ищем конец пакета
 					{
 						//Putch_N(0,0x35);
-						if(CRC(program.Pack_IN_[ch]+i+1,nLen-5)==Calc(program.Pack_IN_[ch][i+nLen-3],program.Pack_IN_[ch][i+nLen-4]))
+						if(CRC(program.Pack_IN_[ch]+1,nLen-5)==Calc(program.Pack_IN_[ch][nLen-3],program.Pack_IN_[ch][nLen-4]))
 						//Проверяем контрольную сумму
 						{
 							//Putch_N(0,0x36);
 							//Проверяем код операции
-							switch(program.Pack_IN_[ch][i+5])
+							switch(program.Pack_IN_[ch][5])
 							{
 								//=======================================================================================
 								//=======================================================================================
@@ -319,13 +319,13 @@ void GetPak_Uart(BYTE ch)
 									SendTarADC8();
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									break;
 								}
 								case 0x02://--------------------------
 								{	// Запись тарировок
 									
-									ptrSendPakTar = (TSendPakTar *)(&program.Pack_IN_[ch][i+6]);
+									ptrSendPakTar = (TSendPakTar *)(&program.Pack_IN_[ch][6]);
 									if(ptrSendPakTar->wCountTar<=COUNT_ADC_CH)
 									{
 										for(j=0; j<ptrSendPakTar->wCountTar; j++)
@@ -337,7 +337,7 @@ void GetPak_Uart(BYTE ch)
 									Adc.WriteCoeffFlash = 1;
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									break;
 								}
 								
@@ -350,14 +350,14 @@ void GetPak_Uart(BYTE ch)
 									SendTarADC6();
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									break;
 								}
 								case 0x02://--------------------------
 								{	// Запись тарировок
 									//Putch_N(0,0x37);
 									
-									ptrSendPakTar = (TSendPakTar *)(&program.Pack_IN_[ch][i+6]);
+									ptrSendPakTar = (TSendPakTar *)(&program.Pack_IN_[ch][6]);
 									if(ptrSendPakTar->wCountTar<=COUNT_TAR_COEFF)
 									{
 										for(j=0; j<ptrSendPakTar->wCountTar; j++)
@@ -369,7 +369,7 @@ void GetPak_Uart(BYTE ch)
 									Adc.WriteCoeffFlash = 1;
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									break;
 								}
 								
@@ -382,20 +382,20 @@ void GetPak_Uart(BYTE ch)
 								{	// Запись в ЦАП	
 									//Putch_N(0,0x36);
 									__DI();
-									Dac9.SelDAC_CH = program.Pack_IN_[ch][i+6];
-									Dac9.SelDAC_CH += (WORD)(program.Pack_IN_[ch][i+7]<<8);
+									Dac9.SelDAC_CH = program.Pack_IN_[ch][6];
+									Dac9.SelDAC_CH += (WORD)(program.Pack_IN_[ch][7]<<8);
 									
 									for(k=0;k<COUNT_DAC_CH; k++)
 									{
 										ptr = (BYTE *)&Dac9.fDAC_New[k];
-										ptr[0] = program.Pack_IN_[ch][i+10+k*4];
-										ptr[1] = program.Pack_IN_[ch][i+11+k*4];
-										ptr[2] = program.Pack_IN_[ch][i+12+k*4];
-										ptr[3] = program.Pack_IN_[ch][i+13+k*4];
+										ptr[0] = program.Pack_IN_[ch][10+k*4];
+										ptr[1] = program.Pack_IN_[ch][11+k*4];
+										ptr[2] = program.Pack_IN_[ch][12+k*4];
+										ptr[3] = program.Pack_IN_[ch][13+k*4];
 									}
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									__EI();
 									break;
 								}
@@ -407,19 +407,19 @@ void GetPak_Uart(BYTE ch)
 									ptr = (BYTE *)&TarrRAM_ADC[0];
 									for(k=0;k<COUNT_ADC_CH*8; k++)
 									{
-										ptr[k] = program.Pack_IN_[ch][i+6+k];
+										ptr[k] = program.Pack_IN_[ch][6+k];
 									}
 									ptr = (BYTE *)&TarrRAM_DAC[0];
 									j=COUNT_ADC_CH*8;
 									for(k=0;k<COUNT_DAC_CH*8; k++)
 									{
-										ptr[k] = program.Pack_IN_[ch][i+6+k+j];
+										ptr[k] = program.Pack_IN_[ch][6+k+j];
 									}
 									
 									Dac9.WriteCoeffFlash=1;
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									__EI();
 									break;
 								}
@@ -441,20 +441,20 @@ void GetPak_Uart(BYTE ch)
 									//Putch_N(0,0x36);
 									__DI();
 									
-									k = program.Pack_IN_[ch][i+6];
-									Dac10.EnOutDac	=Dac10.EnOutDac&(~(((WORD)(1))<<k))|(((program.Pack_IN_[ch][i+7])&1)<<k);
-									Dac10.DOUT_New[k] = program.Pack_IN_[ch][i+7];
-									Dac10.SPDT2_New[0] = program.Pack_IN_[ch][i+8];
+									k = program.Pack_IN_[ch][6];
+									Dac10.EnOutDac	=Dac10.EnOutDac&(~(((WORD)(1))<<k))|(((program.Pack_IN_[ch][7])&1)<<k);
+									Dac10.DOUT_New[k] = program.Pack_IN_[ch][7];
+									Dac10.SPDT2_New[0] = program.Pack_IN_[ch][8];
 									ptr = (BYTE *)&Dac10.fDAC_New[k];
 										
-									ptr[0] = program.Pack_IN_[ch][i+10];
-									ptr[1] = program.Pack_IN_[ch][i+11];
-									ptr[2] = program.Pack_IN_[ch][i+12];
-									ptr[3] = program.Pack_IN_[ch][i+13];
+									ptr[0] = program.Pack_IN_[ch][10];
+									ptr[1] = program.Pack_IN_[ch][11];
+									ptr[2] = program.Pack_IN_[ch][12];
+									ptr[3] = program.Pack_IN_[ch][13];
 									
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									__EI();
 									break;
 								}
@@ -465,12 +465,12 @@ void GetPak_Uart(BYTE ch)
 									ptr = (BYTE *)&TarrRAM_DAC[0];
 									for(k=0;k<COUNT_DAC_CH*8; k++)
 									{
-										ptr[k] = program.Pack_IN_[ch][i+6+k];
+										ptr[k] = program.Pack_IN_[ch][6+k];
 									}
 									Dac10.WriteCoeffFlash=1;
 									//Перетаскиваем оставшиеся данные к началу буфера
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									__EI();
 									break;
 								}
@@ -492,7 +492,7 @@ void GetPak_Uart(BYTE ch)
 								{
 									__DI();
 									program.N[ch]-= nLen;
-									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,BUFFER_LEN_UART-i-nLen);
+									memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen,BUFFER_LEN_UART-nLen);
 									__EI();
 									break;
 								}
@@ -504,7 +504,7 @@ void GetPak_Uart(BYTE ch)
 						//	Putch_N(0,0x33);
 						
 							__DI();
-							memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+i+nLen,program.N[ch]-(i+nLen));
+							memmove(program.Pack_IN_[ch],program.Pack_IN_[ch]+nLen, program.N[ch]-(nLen));
 							program.N[ch] -= nLen;
 							__EI();
 							break;
@@ -515,8 +515,8 @@ void GetPak_Uart(BYTE ch)
 						//Putch_N(0,0x31);
 						
 						__DI();
-						memmove(program.Pack_IN_[ch], program.Pack_IN_[ch]+i+1, program.N[ch]-i);
-						program.N[ch] -= i+1;
+						memmove(program.Pack_IN_[ch], program.Pack_IN_[ch]+1, program.N[ch]);
+						program.N[ch] -= 1;
 						__EI();
 						break;
 					}
@@ -525,8 +525,8 @@ void GetPak_Uart(BYTE ch)
 					//Putch_N(0,0x32);
 						
 					__DI();
-					memmove(program.Pack_IN_[ch], program.Pack_IN_[ch]+i+1, program.N[ch]-i);
-					program.N[ch] -= i+1;
+					memmove(program.Pack_IN_[ch], program.Pack_IN_[ch]+1, program.N[ch]);
+					program.N[ch] -= 1;
 					__EI();
 					break;
 				}
