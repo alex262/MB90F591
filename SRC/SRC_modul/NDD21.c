@@ -12,6 +12,8 @@ void 	(*INIT_BLOK)(void)=InitNDD21;
 void 	(*DRIVER_BLOK)(void)=Driver_NDD21;
 WORD 	(*STATE_BLOCK) 		= &Ndd.Info.word;
 
+const char SoftwareVer[20] = { __TIME__" " __DATE__}; 
+
 WORD 	TIME_CONTROL_TEST=10000/TIMER_RESOLUTION_MS;
 
 void InitNDD21()
@@ -60,6 +62,7 @@ void InitNDD21()
 	Ndd.St2		=1;
 	Ndd.test_0 = 0;
 	Ndd.test_1 = 0;
+	Ndd.stOff  = 0;
 	
 	ADDR_NODE		  =ADDR;
 	Ndd.Info.bits.Addr=ADDR;

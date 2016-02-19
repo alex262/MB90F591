@@ -7,6 +7,7 @@
 #define NAME_MODUL "NDD21"
 #define DEVICE_TYPE 1
 
+extern const char SoftwareVer[20]; 
 
 extern void (*INIT_BLOK)(void);
 extern void (*DRIVER_BLOK)(void);
