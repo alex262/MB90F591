@@ -527,10 +527,10 @@ void DriverDAC10(void)
 			}
 		}else
 		{
-			if(((Dac10.EnOutDac^Dac10.setEnOutDac)&(((WORD)1)<<i)) != 0)
-			{
-				WriteNormalDataDac(i, Dac10.fDAC_Set[i]);
-			}	
+			//if(((Dac10.EnOutDac^Dac10.setEnOutDac)&(((WORD)1)<<i)) != 0)
+			//{
+			//	WriteNormalDataDac(i, Dac10.fDAC_Set[i]);
+			//}	
 		}
 		//=============================================================================================
 		// Опрашиваем дискретные входы
@@ -692,6 +692,7 @@ WORD Operate_Max1329_DAC_Read(BYTE Num, BYTE ch)
 	stop_sio();
 	__EI();
 	UnSelectAll_DAC();
+	return d;
 }
 
 

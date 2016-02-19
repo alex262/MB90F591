@@ -1,5 +1,6 @@
 -g
 -w 2
+-INF LIST
 -I "C:\Work\Project\Блоки Fujitsu MB90F591\Source\SRC\SRC_modul"
 -I "C:\Work\Project\Блоки Fujitsu MB90F591\Source\SRC\CanOpenMain\include"
 -I "C:\Work\Project\Блоки Fujitsu MB90F591\Source\SRC"

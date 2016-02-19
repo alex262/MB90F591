@@ -12,7 +12,7 @@
 #define CAN_OPEN_ENABLE
 //--------------------------------
 //Выбираем блок дл  конкретно  реализации
-#define	PLATA_NDD	//19 16 18 17
+//#define	PLATA_NDD	//19 16 18 17
 //#define	PLATA_FSU	//fsu 14 20 16 18 26
 //#define	PLATA_ADC
 //#define	PLATA_AVV2C
@@ -29,7 +29,7 @@
 //#define	PLATA_NDD20
 //#define	PLATA_TEST
 //#define	PLATA_RVV6
-//#define	PLATA_NDD21
+#define	PLATA_NDD21
 //#define	PLATA_DAC10
 //#define	PLATA_ADC8
 //#define PLATA_FSU28
@@ -275,7 +275,6 @@ typedef struct
 	
 	unsigned char Pack_IN_[COUNT_UART_BUF][BUFFER_LEN_UART];	//Вход  и  буфер по UART1
 	unsigned int  N[COUNT_UART_BUF];						// омер пришедшего  имвола в пакете UART1
-	
 }TProgram;
 
 //------------------------------------------------------------------
